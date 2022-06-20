@@ -7,3 +7,13 @@ export const EventEndpoints = (client) => ({
     return response;
   },
 });
+
+export const CategoryEndpoints = (client) => ({
+  getCategories: async (params = {}) => {
+    const response = await client.get('/api/v1/categories', {
+      params,
+    });
+
+    return response;
+  },
+});
