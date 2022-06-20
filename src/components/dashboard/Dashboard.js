@@ -8,11 +8,11 @@ function Dashboard() {
   return (
     <AppWrapper>
       <Grid container spacing={3}>
-        <Grid item xs={13} md={3}>
+        <Grid item xs={12} md={3}>
           <DashboardCategories />
         </Grid>
-        <Grid item xs={13} md={9}>
-          <EventList />;
+        <Grid item xs={12} md={9}>
+          <EventList />
         </Grid>
       </Grid>
     </AppWrapper>

@@ -1,18 +1,35 @@
 import { useEffect } from 'react';
+import { Box, Grid } from '@mui/material';
+
 import { EventsAPI } from '../../../api';
+import useAsync from '../../../hooks/useAsync';
+import EventItem from './item';
 
 function EventList() {
-  const fetchEvents = async () => {
-    try {
-      const response = await EventsAPI.getEvents({});
-      console.log('response', response);
-    } catch (error) {}
-  };
+  const [apiCall, status, error, eventsResponse] = useAsync(
+    EventsAPI.getEvents
+  );
+
   useEffect(() => {
-    fetchEvents();
+    apiCall();
   }, []);
 
-  return <div>Events here</div>;
+  if (status === 'pending' || error) {
+    return null;
+  }
+
+  if (!eventsResponse) {
+    <div>Loading ...</div>;
+  }
+
+  return (
+    <Grid container>
+      {eventsResponse &&
+        eventsResponse.events.map((event) => (
+          <EventItem key={event._id} event={event} />
+        ))}
+    </Grid>
+  );
 }
 
 export default EventList;
