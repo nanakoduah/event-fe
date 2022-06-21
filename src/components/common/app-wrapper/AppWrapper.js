@@ -20,13 +20,6 @@ function AppWrapper({ children }) {
                 Home
               </Typography>
             </Link>
-            <Link to={userLoggedIn ? '/me/events' : '/signin'}>
-              <Box sx={{ cursor: 'pointer' }}>
-                <Typography variant="h6" component="h6">
-                  My Events
-                </Typography>
-              </Box>
-            </Link>
             <Link to={userLoggedIn ? '/events/new' : '/signin'}>
               <Box sx={{ cursor: 'pointer' }} mx={{ xs: '0.5rem', md: '2rem' }}>
                 <Typography variant="h6" component="h6">
