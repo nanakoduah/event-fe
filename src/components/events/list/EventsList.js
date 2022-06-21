@@ -3,7 +3,8 @@ import { Grid, Typography } from '@mui/material';
 
 import { EventsAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
-import EventItem from './item';
+import EventItems from './item';
+import { useSelector } from 'react-redux';
 
 function EventList() {
   const [queryParams, setQueryParams] = useState({
@@ -14,10 +15,11 @@ function EventList() {
   const [apiCall, status, error, eventsResponse] = useAsync(
     EventsAPI.getEvents
   );
+  const { user, userLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     apiCall({ ...queryParams });
-  }, []);
+  }, [user.subscriptions]);
 
   if (status === 'pending' || error) {
     return null;
@@ -29,26 +31,16 @@ function EventList() {
   return (
     <>
       <Grid container>
-        {eventsResponse && eventsResponse.subscribedEvents.length > 0 && (
-          <Grid item xs={12} mx="1rem">
-            <Typography component="h5" variant="h4">
-              Subscribed events
-            </Typography>
-          </Grid>
+        {userLoggedIn && (
+          <EventItems
+            events={eventsResponse ? eventsResponse.subscribedEvents : []}
+            title="Subscribed events"
+          />
         )}
-        {eventsResponse &&
-          eventsResponse.subscribedEvents.map((event) => (
-            <EventItem key={event._id} event={event} />
-          ))}
-        <Grid item xs={12} mx="1rem" mt="2rem">
-          <Typography component="h5" variant="h4">
-            All events
-          </Typography>
-        </Grid>
-        {eventsResponse &&
-          eventsResponse.allEvents.map((event) => (
-            <EventItem key={event._id} event={event} />
-          ))}
+        <EventItems
+          events={eventsResponse ? eventsResponse.allEvents : []}
+          title="All events"
+        />
       </Grid>
     </>
   );

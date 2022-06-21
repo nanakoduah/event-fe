@@ -20,6 +20,12 @@ export const authSlice = createSlice({
         userLoggedIn: true,
       });
     },
+    setUserSubscriptions: (state, action) => {
+      return (state = {
+        ...state,
+        user: action.payload,
+      });
+    },
     signout: () => {
       return (state = {
         ...initialState,
@@ -28,6 +34,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setAuth, signout } = authSlice.actions;
+export const { setAuth, signout, setUserSubscriptions } = authSlice.actions;
 
 export default authSlice.reducer;
