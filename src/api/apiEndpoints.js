@@ -7,9 +7,8 @@ export const EventEndpoints = (client) => ({
 
     return response;
   },
-  createEvent: async ({ signal }, params = {}) => {
-    const response = await client.post('/api/v1/events', {
-      params,
+  createEvent: async ({ signal }, params) => {
+    const response = await client.post('/api/v1/events', params, {
       signal,
     });
 

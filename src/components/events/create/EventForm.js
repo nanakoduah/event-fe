@@ -19,7 +19,10 @@ const schema = yup.object({
   title: yup.string().required('Title is required'),
   description: yup.string().required('Description is required'),
   category: yup.string().required('Category is required'),
-  date: yup.date().required('Date is required'),
+  date: yup
+    .date()
+    .required('Date is required')
+    .min(new Date(), 'Date must be in the future'),
   isVirtual: yup.boolean(),
   address: yup.string(),
 });

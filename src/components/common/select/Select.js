@@ -55,9 +55,7 @@ const MUISelect = forwardRef(
             </MenuItem>
           ))}
         </Select>
-        <FormHelperText sx={{ color: 'primary.main' }}>
-          {helperText}
-        </FormHelperText>
+        <FormHelperText sx={{ color: 'red' }}>{helperText}</FormHelperText>
       </FormControl>
     );
   }
