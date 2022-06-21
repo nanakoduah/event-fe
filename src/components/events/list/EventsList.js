@@ -31,15 +31,19 @@ function EventList() {
       <Grid container>
         {eventsResponse && eventsResponse.subscribedEvents.length > 0 && (
           <Grid item xs={12} mx="1rem">
-            <Typography>Subscribed events</Typography>
+            <Typography component="h5" variant="h4">
+              Subscribed events
+            </Typography>
           </Grid>
         )}
         {eventsResponse &&
           eventsResponse.subscribedEvents.map((event) => (
             <EventItem key={event._id} event={event} />
           ))}
-        <Grid item xs={12} mx="1rem">
-          <Typography>All events</Typography>
+        <Grid item xs={12} mx="1rem" mt="2rem">
+          <Typography component="h5" variant="h4">
+            All events
+          </Typography>
         </Grid>
         {eventsResponse &&
           eventsResponse.allEvents.map((event) => (

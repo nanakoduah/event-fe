@@ -1,7 +1,10 @@
 import { Grid, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function AppWrapper({ children }) {
+  const { userLoggedIn, user } = useSelector((state) => state.auth);
+
   return (
     <Grid container paddingTop="5rem">
       <AppBar position="fixed">
@@ -9,18 +12,25 @@ function AppWrapper({ children }) {
           <Grid item container sx={{ flexGrow: 1 }}>
             <Link to="/">
               <Typography
-                variant="h5"
-                component="h5"
+                variant="h6"
+                component="h6"
                 mx={{ xs: '0.5rem', md: '2rem' }}
                 sx={{ cursor: 'pointer' }}
               >
                 Home
               </Typography>
             </Link>
-            <Link to="/me/events">
+            <Link to={userLoggedIn ? '/me/events' : '/signin'}>
               <Box sx={{ cursor: 'pointer' }}>
-                <Typography variant="h5" component="h5">
+                <Typography variant="h6" component="h6">
                   My Events
+                </Typography>
+              </Box>
+            </Link>
+            <Link to={userLoggedIn ? '/events/new' : '/signin'}>
+              <Box sx={{ cursor: 'pointer' }} mx={{ xs: '0.5rem', md: '2rem' }}>
+                <Typography variant="h6" component="h6">
+                  Create event
                 </Typography>
               </Box>
             </Link>
@@ -31,14 +41,23 @@ function AppWrapper({ children }) {
                 paddingInline: '0.3rem 2rem',
                 justifyContent: 'flex-end',
                 display: 'flex',
+                mt: '0.4rem',
               }}
             >
-              user name
+              {userLoggedIn && <Typography>{user.name}</Typography>}
             </Box>
-            <Button color="inherit">Signup</Button>
-            <Link to="/signin">
-              <Button color="inherit">Signin</Button>
-            </Link>
+            {userLoggedIn && <Button color="inherit">Signout</Button>}
+            {!userLoggedIn && (
+              <>
+                <Link to="/signin">
+                  <Button color="inherit">Signup</Button>
+                </Link>
+
+                <Link to="/signin">
+                  <Button color="inherit">Signin</Button>
+                </Link>
+              </>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>

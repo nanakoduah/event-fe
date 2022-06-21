@@ -57,6 +57,7 @@ function useAsync(asyncFunction) {
           payload: response,
         });
       } catch (error) {
+        console.log(error);
         dispatch({
           type: 'error',
           payload:
