@@ -154,7 +154,7 @@ function Signup() {
             <Box component="span" color="#bbb" mr="0.8rem">
               Already have an account?
             </Box>
-            <Box component={Link} to="/login" fontWeight="600">
+            <Box component={Link} to="/signin" fontWeight="600">
               Login here
             </Box>
           </span>

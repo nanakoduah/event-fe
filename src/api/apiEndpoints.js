@@ -19,3 +19,20 @@ export const CategoryEndpoints = (client) => ({
     return response;
   },
 });
+
+export const AuthEndpoints = (client) => ({
+  signup: async ({ signal }, params = {}) => {
+    const response = await client.post('/api/v1/auth/signup', params, {
+      signal,
+    });
+
+    return response;
+  },
+  signin: async ({ signal }, params = {}) => {
+    const response = await client.post('/api/v1/auth/signin', params, {
+      signal,
+    });
+
+    return response;
+  },
+});
