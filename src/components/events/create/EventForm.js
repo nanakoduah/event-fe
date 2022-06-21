@@ -24,7 +24,10 @@ const schema = yup.object({
     .required('Date is required')
     .min(new Date(), 'Date must be in the future'),
   isVirtual: yup.boolean(),
-  address: yup.string(),
+  address: yup.string().when('isVirtual', {
+    is: false,
+    then: yup.string().required('Provide address or tick virtual conference'),
+  }),
 });
 
 function EventContainer({ onSubmitRequest, disabled }) {
