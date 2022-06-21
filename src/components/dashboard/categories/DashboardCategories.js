@@ -32,9 +32,7 @@ function DashboardCategories() {
               component="li"
               sx={{ marginBottom: '0.8rem', listStyle: 'none' }}
             >
-              <Link to={`/evetns/${category._id}/category/`}>
-                {category.name}
-              </Link>
+              <Link to={`/${category._id}`}>{category.name}</Link>
             </Box>
           ))}
       </ul>

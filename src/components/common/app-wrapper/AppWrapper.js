@@ -1,11 +1,4 @@
-import {
-  Grid,
-  AppBar,
-  Toolbar,
-  Box,
-  Breadcrumbs,
-  Typography,
-} from '@mui/material';
+import { Grid, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function AppWrapper({ children }) {
@@ -30,6 +23,21 @@ function AppWrapper({ children }) {
                   My Events
                 </Typography>
               </Box>
+            </Link>
+            <Box
+              sx={{
+                flexGrow: 1,
+                whiteSpace: 'nowrap',
+                paddingInline: '0.3rem 2rem',
+                justifyContent: 'flex-end',
+                display: 'flex',
+              }}
+            >
+              user name
+            </Box>
+            <Button color="inherit">Signup</Button>
+            <Link to="/signin">
+              <Button color="inherit">Signin</Button>
             </Link>
           </Grid>
         </Toolbar>
