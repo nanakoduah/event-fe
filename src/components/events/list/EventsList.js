@@ -27,7 +27,7 @@ function EventList() {
     if (error) {
       showNotification({
         severity: 'error',
-        message: error.message || 'Something went wrong loading events.',
+        message: error || 'Something went wrong loading events.',
       });
     }
   }, [error]);

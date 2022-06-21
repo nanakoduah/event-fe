@@ -52,7 +52,7 @@ function EventContainer({ onSubmitRequest, disabled }) {
     if (error) {
       showNotification({
         severity: 'error',
-        message: error.message || 'Something went loading some page data.',
+        message: error || 'Something went loading some page data.',
       });
     }
   }, [error]);

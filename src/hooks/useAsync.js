@@ -1,4 +1,7 @@
 import { useReducer, useCallback, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { signout } from '../state/slices/authSlice';
+import { setNotification } from '../state/slices/notificationSlice';
 
 const INITIAL_STATE = {
   status: 'idle',
@@ -40,6 +43,7 @@ function useAsync(asyncFunction) {
   const [state, dispatch] = useReducer(asyncReducer, INITIAL_STATE);
   const apiSignalRef = useRef(null);
   const { status, value, error } = state;
+  const reduxDispatcher = useDispatch();
 
   const handleAsyncCall = useCallback(
     async (args) => {
@@ -57,11 +61,22 @@ function useAsync(asyncFunction) {
           payload: response,
         });
       } catch (error) {
-        dispatch({
-          type: 'error',
-          payload:
-            error.message || 'Something went wrong contacting the server',
-        });
+        if (error.response && error.response.status === 401) {
+          reduxDispatcher(signout());
+          reduxDispatcher(
+            setNotification({
+              severity: 'error',
+              message: 'Invalid user session. Please signin again',
+            })
+          );
+        } else {
+          dispatch({
+            type: 'error',
+            payload:
+              error.response.data.message ||
+              'Something went wrong contacting the server',
+          });
+        }
       }
     },
     [asyncFunction]

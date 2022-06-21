@@ -77,7 +77,7 @@ function DashboardCategories() {
       showNotification({
         severity: 'error',
         message:
-          updateError.message ||
+          updateError ||
           'Something went wrong saving your subscriptions. Please try again later',
       });
     }

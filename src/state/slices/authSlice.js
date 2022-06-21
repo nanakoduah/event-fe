@@ -26,7 +26,7 @@ export const authSlice = createSlice({
         user: action.payload,
       });
     },
-    signout: () => {
+    signout: (state) => {
       return (state = {
         ...initialState,
       });
