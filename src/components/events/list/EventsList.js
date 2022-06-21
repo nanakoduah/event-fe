@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { EventsAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';

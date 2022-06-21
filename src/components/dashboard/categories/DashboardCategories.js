@@ -71,7 +71,7 @@ function DashboardCategories() {
   }
 
   if (!categoryResponse) {
-    <div>Loading ...</div>;
+    return <div>Loading ...</div>;
   }
 
   return (

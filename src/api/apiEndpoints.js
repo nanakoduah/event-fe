@@ -7,6 +7,14 @@ export const EventEndpoints = (client) => ({
 
     return response;
   },
+  createEvent: async ({ signal }, params = {}) => {
+    const response = await client.post('/api/v1/events', {
+      params,
+      signal,
+    });
+
+    return response;
+  },
 });
 
 export const CategoryEndpoints = (client) => ({

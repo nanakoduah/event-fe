@@ -7,6 +7,7 @@ import store from './state';
 import Dashboard from './components/dashboard';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
+import CreateEvent from './components/events/create';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Box>
           <Router>
             <Routes>
-              <Route path="/events/new" element={<div>new event here</div>} />
+              <Route path="/events/new" element={<CreateEvent />} />
               <Route
                 path="/events/:id/edit"
                 element={<div>edit event here</div>}
