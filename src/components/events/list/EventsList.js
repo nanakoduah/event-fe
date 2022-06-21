@@ -5,6 +5,7 @@ import { EventsAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
 import EventItems from './item';
 import { useSelector } from 'react-redux';
+import useNotification from '../../../hooks/useNotification';
 
 function EventList() {
   const [queryParams, setQueryParams] = useState({
@@ -15,12 +16,21 @@ function EventList() {
   const [apiCall, status, error, eventsResponse] = useAsync(
     EventsAPI.getEvents
   );
+  const showNotification = useNotification();
   const { user, userLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     apiCall({ ...queryParams });
   }, [user.subscriptions]);
 
+  useEffect(() => {
+    if (error) {
+      showNotification({
+        severity: 'error',
+        message: error.message || 'Something went wrong loading events.',
+      });
+    }
+  }, [error]);
   if (status === 'pending' || error) {
     return null;
   }

@@ -24,7 +24,7 @@ const AuthGuard = (props) => {
     } else {
       // open routes
       if ([...OPEN_ROUTES, DEFAULT_ROUTE].indexOf(location.pathname) < 0) {
-        navigate('/signin');
+        navigate('/');
       }
       if ([...OPEN_ROUTES, DEFAULT_ROUTE].indexOf(location.pathname) > -1) {
         setIsDone(true);

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CategoriesAPI, UserAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
+import useNotification from '../../../hooks/useNotification';
 import { setUserSubscriptions } from '../../../state/slices/authSlice';
 
 function DashboardCategories() {
@@ -17,6 +18,7 @@ function DashboardCategories() {
     updateResponse,
   ] = useAsync(UserAPI.subscribe);
   const { user, userLoggedIn } = useSelector((state) => state.auth);
+  const showNotification = useNotification();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function DashboardCategories() {
   }, [user, user.subscriptions]);
 
   useEffect(() => {
-    if (!updateError && updateResponse && updateStatus !== 'pending') {
+    if (!updateError && updateResponse) {
       const subscriptions = Object.keys(selectionMap);
       dispatch(
         setUserSubscriptions({
@@ -63,8 +65,23 @@ function DashboardCategories() {
           subscriptions,
         })
       );
+      showNotification({
+        severity: 'success',
+        message: 'Subscriptions saved successfully.',
+      });
     }
-  }, [updateError, updateResponse, updateStatus]);
+  }, [updateError, updateResponse]);
+
+  useEffect(() => {
+    if (updateError) {
+      showNotification({
+        severity: 'error',
+        message:
+          updateError.message ||
+          'Something went wrong saving your subscriptions. Please try again later',
+      });
+    }
+  }, [updateError]);
 
   if (categoryStatus === 'pending' || categoryError) {
     return null;
