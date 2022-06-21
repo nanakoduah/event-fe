@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from 'react';
+import { useReducer, useCallback, useEffect, useRef } from 'react';
 
 const INITIAL_STATE = {
   status: 'idle',
@@ -38,15 +38,19 @@ function asyncReducer(state, action) {
 
 function useAsync(asyncFunction) {
   const [state, dispatch] = useReducer(asyncReducer, INITIAL_STATE);
-
+  const apiSignalRef = useRef(null);
   const { status, value, error } = state;
 
   const handleAsyncCall = useCallback(
     async (args) => {
       try {
         dispatch({ type: 'pending' });
+        apiSignalRef.current = new AbortController();
 
-        const response = await asyncFunction(args);
+        const response = await asyncFunction(
+          { signal: apiSignalRef.current.signal },
+          args
+        );
 
         dispatch({
           type: 'success',
@@ -62,6 +66,14 @@ function useAsync(asyncFunction) {
     },
     [asyncFunction]
   );
+
+  useEffect(() => {
+    return () => {
+      if (apiSignalRef.current) {
+        apiSignalRef.current.abort;
+      }
+    };
+  }, []);
 
   return [handleAsyncCall, status, error, value];
 }

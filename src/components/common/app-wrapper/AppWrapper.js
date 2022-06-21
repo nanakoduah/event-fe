@@ -16,7 +16,8 @@ function AppWrapper({ children }) {
           <Grid item container sx={{ flexGrow: 1 }}>
             <Link to="/">
               <Typography
-                variant="h6"
+                variant="h5"
+                component="h5"
                 mx={{ xs: '0.5rem', md: '2rem' }}
                 sx={{ cursor: 'pointer' }}
               >
@@ -25,7 +26,9 @@ function AppWrapper({ children }) {
             </Link>
             <Link to="/me/events">
               <Box sx={{ cursor: 'pointer' }}>
-                <Typography variant="h6">My Events</Typography>
+                <Typography variant="h5" component="h5">
+                  My Events
+                </Typography>
               </Box>
             </Link>
           </Grid>

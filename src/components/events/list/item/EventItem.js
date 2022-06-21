@@ -1,9 +1,7 @@
 import { Box, Grid, Typography, Paper, Button } from '@mui/material';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
 import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
 
 function EventItem({ event }) {
   return (
@@ -34,8 +32,8 @@ function EventItem({ event }) {
           }}
         >
           <Typography
-            component="h4"
-            variant="h4"
+            component="h5"
+            variant="h5"
             sx={{ color: 'primary.main' }}
           >
             {event.date}
@@ -50,8 +48,8 @@ function EventItem({ event }) {
           }}
         >
           <Typography
-            component="h2"
-            variant="h2"
+            component="h5"
+            variant="h5"
             sx={{ color: 'primary.main', my: '1rem' }}
           >
             {event.title}
