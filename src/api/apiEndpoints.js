@@ -38,9 +38,10 @@ export const AuthEndpoints = (client) => ({
 });
 
 export const UserEndpoints = (client) => ({
-  subscribe: async (params) => {
-    console.log(params);
-    const response = await client.patch('/api/v1/users/subscriptions', params);
+  subscribe: async ({ signal }, params) => {
+    const response = await client.patch('/api/v1/users/subscriptions', params, {
+      signal,
+    });
 
     return response;
   },

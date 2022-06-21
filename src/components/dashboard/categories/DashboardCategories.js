@@ -4,18 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CategoriesAPI, UserAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
+import { setUserSubscriptions } from '../../../state/slices/authSlice';
 
 function DashboardCategories() {
   const [selectionMap, setSelectionMap] = useState({});
-  const [apiCall, status, error, categoryResponse] = useAsync(
-    CategoriesAPI.getCategories
-  );
-  const { user } = useSelector((state) => state.auth);
-
+  const [categoryApiCall, categoryStatus, categoryError, categoryResponse] =
+    useAsync(CategoriesAPI.getCategories);
+  const [
+    updateSubScriptionsApiCall,
+    updateStatus,
+    updateError,
+    updateResponse,
+  ] = useAsync(UserAPI.subscribe);
+  const { user, userLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    apiCall();
+    categoryApiCall();
   }, []);
 
   const onSelectionChanged = (status, category) => {
@@ -35,14 +40,8 @@ function DashboardCategories() {
   };
 
   const handleSubscribe = async () => {
-    try {
-      const response = await UserAPI.subscribe({
-        subscriptions: Object.keys(selectionMap),
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    const subscriptions = Object.keys(selectionMap);
+    updateSubScriptionsApiCall({ subscriptions });
   };
 
   useEffect(() => {
@@ -55,15 +54,25 @@ function DashboardCategories() {
     setSelectionMap(newMap);
   }, [user, user.subscriptions]);
 
-  if (status === 'pending' || error) {
+  useEffect(() => {
+    if (!updateError && updateResponse && updateStatus !== 'pending') {
+      const subscriptions = Object.keys(selectionMap);
+      dispatch(
+        setUserSubscriptions({
+          ...user,
+          subscriptions,
+        })
+      );
+    }
+  }, [updateError, updateResponse, updateStatus]);
+
+  if (categoryStatus === 'pending' || categoryError) {
     return null;
   }
 
   if (!categoryResponse) {
     <div>Loading ...</div>;
   }
-
-  console.log(selectionMap);
 
   return (
     <Paper sx={{ border: 1, borderColor: 'grey.300', padding: '0.3rem' }}>
@@ -98,7 +107,11 @@ function DashboardCategories() {
             my: '1rem',
           }}
         >
-          <Button onClick={handleSubscribe} variant="contained">
+          <Button
+            onClick={handleSubscribe}
+            variant="contained"
+            disabled={!userLoggedIn}
+          >
             Update subscribe
           </Button>
         </Box>
