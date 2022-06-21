@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import SigninForm from './Signin';
-import { AuthAPI, client } from '../../../api';
+import { AuthAPI } from '../../../api';
 import { useDispatch } from 'react-redux';
 import useAsync from '../../../hooks/useAsync';
 import { Alert } from '@mui/material';
@@ -16,9 +16,6 @@ function SigninContainer() {
 
   useEffect(() => {
     if (signinSuccessValue) {
-      client.defaults.headers.common[
-        'authorization'
-      ] = `Bearer ${signinSuccessValue.token}`;
       dispatch(setAuth(signinSuccessValue));
       navigate('/');
     }

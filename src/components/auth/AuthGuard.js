@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { client } from '../../api';
 
 const OPEN_ROUTES = ['/signin', '/signup'];
 const DEFAULT_ROUTE = '/';
@@ -8,7 +9,7 @@ const DEFAULT_ROUTE = '/';
 const AuthGuard = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { userLoggedIn } = useSelector((state) => state.auth);
+  const { userLoggedIn, token } = useSelector((state) => state.auth);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,10 @@ const AuthGuard = (props) => {
       }
     }
   }, [location.pathname, userLoggedIn, location]);
+
+  useEffect(() => {
+    client.defaults.headers.common['authorization'] = `Bearer ${token}`;
+  }, [token]);
 
   return <>{isDone ? props.children : null}</>;
 };
