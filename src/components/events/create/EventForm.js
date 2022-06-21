@@ -14,6 +14,7 @@ import * as yup from 'yup';
 import { CategoriesAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
 import { Select } from '../../common';
+import useNotification from '../../../hooks/useNotification';
 
 const schema = yup.object({
   title: yup.string().required('Title is required'),
@@ -31,6 +32,7 @@ const schema = yup.object({
 });
 
 function EventContainer({ onSubmitRequest, disabled }) {
+  const showNotification = useNotification();
   const [apiCall, status, error, categoryResponse] = useAsync(
     CategoriesAPI.getCategories
   );
@@ -45,6 +47,15 @@ function EventContainer({ onSubmitRequest, disabled }) {
   useEffect(() => {
     apiCall();
   }, []);
+
+  useEffect(() => {
+    if (error) {
+      showNotification({
+        severity: 'error',
+        message: error.message || 'Something went loading some page data.',
+      });
+    }
+  }, [error]);
 
   const onDateFocus = (evt) => {
     evt.target.type = 'date';

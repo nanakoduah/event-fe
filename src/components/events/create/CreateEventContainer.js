@@ -2,18 +2,32 @@ import { Grid } from '@mui/material';
 import { useEffect } from 'react';
 import { EventsAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
+import useNotification from '../../../hooks/useNotification';
 import { AppWrapper } from '../../common';
 import EventForm from './EventForm';
 
 function CreateEventContainer() {
+  const showNotification = useNotification();
   const [createEventApiCall, eventStatus, eventError, categoryResponse] =
     useAsync(EventsAPI.createEvent);
 
   useEffect(() => {
-    if (eventStatus !== 'pending' && eventError && categoryResponse) {
-      console.log(categoryResponse);
+    if (categoryResponse) {
+      showNotification({
+        severity: 'success',
+        message: 'Event created successfully',
+      });
     }
-  }, [eventStatus, eventError, categoryResponse]);
+  }, [categoryResponse]);
+
+  useEffect(() => {
+    if (eventError) {
+      showNotification({
+        severity: 'error',
+        message: eventError || 'Event creation failed',
+      });
+    }
+  }, [eventError]);
 
   return (
     <AppWrapper>

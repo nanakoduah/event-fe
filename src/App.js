@@ -9,11 +9,13 @@ import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import CreateEvent from './components/events/create';
 import AuthGuard from './components/auth/AuthGuard';
+import Notification from './components/notification';
 
 function App() {
   return (
     <React.StrictMode>
       <Provider store={store}>
+        <Notification />
         <Router>
           <AuthGuard>
             <Routes>
