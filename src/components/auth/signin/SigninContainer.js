@@ -17,7 +17,7 @@ function SigninContainer() {
   useEffect(() => {
     if (signinSuccessValue) {
       console.log(signinSuccessValue);
-      dispatch(setAuth(signinSuccessValue.user));
+      dispatch(setAuth(signinSuccessValue));
       navigate('/');
     }
   }, [signinSuccessValue]);

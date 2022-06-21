@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  email: '',
   userLoggedIn: false,
   token: '',
-  name: '',
+  user: {
+    email: '',
+    name: '',
+  },
 };
 
 export const authSlice = createSlice({
@@ -12,13 +14,15 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setAuth: (state, action) => {
-      console.log({ state, action });
       return (state = {
         ...action.payload,
+        userLoggedIn: true,
       });
     },
     signout: () => {
-      return state;
+      return (state = {
+        ...initialState,
+      });
     },
   },
 });
