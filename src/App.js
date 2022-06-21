@@ -8,13 +8,14 @@ import Dashboard from './components/dashboard';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import CreateEvent from './components/events/create';
+import AuthGuard from './components/auth/AuthGuard';
 
 function App() {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <Box>
-          <Router>
+        <Router>
+          <AuthGuard>
             <Routes>
               <Route path="/events/new" element={<CreateEvent />} />
               <Route
@@ -30,8 +31,8 @@ function App() {
               <Route path="/signin" element={<Signin />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>
-          </Router>
-        </Box>
+          </AuthGuard>
+        </Router>
       </Provider>
     </React.StrictMode>
   );
