@@ -9,15 +9,10 @@ import AuthPageWrapper from '../AuthPageWrapper';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(5, 'Password must be at least five characters')
-    .max(16, 'Password must not exceed 16 characters'),
+  password: yup.string().required('Password is required'),
 });
 
-function Signin() {
-  const [genericMessage, setGenericMessage] = useState(null);
+function Signin({ onLoginRequest, disabled, genericMessage }) {
   const {
     register,
     handleSubmit,
@@ -25,12 +20,6 @@ function Signin() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onLoginRequest = (values) => {
-    console.log(values);
-  };
-
-  const disabled = false;
 
   return (
     <AuthPageWrapper title="Signin" genericMessage={genericMessage}>

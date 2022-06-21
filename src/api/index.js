@@ -1,4 +1,8 @@
-import { EventEndpoints, CategoryEndpoints } from './apiEndpoints';
+import {
+  EventEndpoints,
+  CategoryEndpoints,
+  AuthEndpoints,
+} from './apiEndpoints';
 import HTTPClient from './HTTClient';
 
 const { REACT_APP_SERVER_URL } = process.env;

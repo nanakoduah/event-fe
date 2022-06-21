@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -16,7 +15,7 @@ const schema = yup.object({
   password: yup
     .string()
     .required('Password is required')
-    .min(5, 'Password must be at least five characters')
+    .min(8, 'Password must be at least five characters')
     .max(16, 'Password must not exceed 16 characters'),
   confirmPassword: yup
     .string()
@@ -27,8 +26,7 @@ const schema = yup.object({
     ),
 });
 
-function Signup() {
-  const [genericMessage, setGenericMessage] = useState(null);
+function Signup({ onSignUpRequest, disabled, genericMessage }) {
   const {
     register,
     handleSubmit,
@@ -36,12 +34,6 @@ function Signup() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onSignUpRequest = (values) => {
-    console.log(values);
-  };
-
-  const disabled = false;
 
   return (
     <AuthPageWrapper title="Signup" genericMessage={genericMessage}>
