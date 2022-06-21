@@ -31,13 +31,7 @@ function EventItem({ event }) {
             wordBreak: 'break-all',
           }}
         >
-          <Typography
-            component="h5"
-            variant="h5"
-            sx={{ color: 'primary.main' }}
-          >
-            {event.date}
-          </Typography>
+          <Typography sx={{ color: 'primary.main' }}>{event.date}</Typography>
         </Box>
         <Box
           sx={{

@@ -6,6 +6,7 @@ const initialState = {
   user: {
     email: '',
     name: '',
+    subscriptions: [],
   },
 };
 
