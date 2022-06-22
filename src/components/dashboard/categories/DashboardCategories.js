@@ -94,10 +94,6 @@ function DashboardCategories() {
     }
   }, [categoryError]);
 
-  if (categoryStatus === 'pending' || categoryError) {
-    return null;
-  }
-
   if (!categoryResponse) {
     return <div>Loading ...</div>;
   }

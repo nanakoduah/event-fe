@@ -31,9 +31,6 @@ function EventList() {
       });
     }
   }, [error]);
-  if (status === 'pending' || error) {
-    return null;
-  }
 
   if (!eventsResponse) {
     <div>Loading ...</div>;
