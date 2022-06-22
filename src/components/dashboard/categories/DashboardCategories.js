@@ -93,8 +93,11 @@ function DashboardCategories() {
 
   return (
     <Paper sx={{ border: 1, borderColor: 'grey.300', padding: '0.3rem' }}>
-      <Typography variant="h6" component="h3" sx={{ p: '1rem' }}>
-        Select event to subscribe to
+      <Typography variant="h4" component="h3" sx={{ p: '1rem' }}>
+        Categories
+      </Typography>
+      <Typography sx={{ color: 'grey.400', px: '1rem', mb: '1rem' }}>
+        Select categories of interest and save for faster loads
       </Typography>
       <div>
         {categoryResponse &&
@@ -129,7 +132,7 @@ function DashboardCategories() {
             variant="contained"
             disabled={!userLoggedIn}
           >
-            Update subscribe
+            Save
           </Button>
         </Box>
       </div>
