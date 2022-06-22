@@ -101,7 +101,7 @@ function EventItem({ events, title }) {
                       display: 'flex',
                     }}
                   >
-                    {event.category} AL
+                    {event?.category ? event.category?.name : ''}
                   </Typography>
                 </Box>
                 <Box
