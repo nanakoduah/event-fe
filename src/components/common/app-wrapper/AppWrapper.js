@@ -1,9 +1,13 @@
 import { Grid, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signout } from '../../../state/slices/authSlice';
 
 function AppWrapper({ children }) {
   const { userLoggedIn, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleSignout = () => dispatch(signout());
 
   return (
     <Grid container paddingTop="5rem">
@@ -39,10 +43,14 @@ function AppWrapper({ children }) {
             >
               {userLoggedIn && <Typography>{user.name}</Typography>}
             </Box>
-            {userLoggedIn && <Button color="inherit">Signout</Button>}
+            {userLoggedIn && (
+              <Button onClick={handleSignout} color="inherit">
+                Signout
+              </Button>
+            )}
             {!userLoggedIn && (
               <>
-                <Link to="/signin">
+                <Link to="/signup">
                   <Button color="inherit">Signup</Button>
                 </Link>
 

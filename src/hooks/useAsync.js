@@ -66,18 +66,20 @@ function useAsync(asyncFunction) {
           reduxDispatcher(
             setNotification({
               severity: 'error',
-              message: 'Invalid user session. Please signin again',
+              message:
+                error?.response?.data?.message ||
+                error.message ||
+                'Invalid user session. Please signin again',
             })
           );
-        } else {
-          dispatch({
-            type: 'error',
-            payload:
-              error?.response?.data?.message ||
-              error?.message ||
-              'Something went wrong contacting the server',
-          });
         }
+        dispatch({
+          type: 'error',
+          payload:
+            error?.response?.data?.message ||
+            error?.message ||
+            'Something went wrong contacting the server',
+        });
       }
     },
     [asyncFunction]

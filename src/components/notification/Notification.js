@@ -36,7 +36,7 @@ function Notification() {
       sx={{
         zIndex: 10,
         position: 'fixed',
-        top: '100px',
+        top: '60px',
       }}
     >
       <Grid item xs={12} md={7} mx="auto">
