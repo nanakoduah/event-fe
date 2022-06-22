@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 
 import { CategoriesAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
@@ -24,7 +25,7 @@ const schema = yup.object({
   }),
 });
 
-function EventContainer({ onSubmitRequest, disabled }) {
+function EventForm({ onSubmitRequest, disabled }) {
   const showNotification = useNotification();
   const [apiCall, status, error, categoryResponse] = useAsync(
     CategoriesAPI.getCategories
@@ -181,4 +182,9 @@ function EventContainer({ onSubmitRequest, disabled }) {
   );
 }
 
-export default EventContainer;
+EventForm.propTypes = {
+  onSubmitRequest: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+};
+
+export default EventForm;

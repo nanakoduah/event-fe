@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Grid, Box, Container } from '@mui/material';
 import { TypographyComponent } from '../common';
 
@@ -79,5 +80,11 @@ function AuthPageWrapper({ title, genericMessage, children }) {
     </Container>
   );
 }
+
+AuthPageWrapper.propTypes = {
+  title: PropTypes.string.isRequired,
+  genericMessage: PropTypes.node,
+  children: PropTypes.node.isRequired,
+};
 
 export default AuthPageWrapper;

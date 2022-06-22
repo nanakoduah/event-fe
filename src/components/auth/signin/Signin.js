@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 
 import { Box, TextField, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -101,5 +101,11 @@ function Signin({ onLoginRequest, disabled, genericMessage }) {
     </AuthPageWrapper>
   );
 }
+
+Signin.propTypes = {
+  onLoginRequest: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  genericMessage: PropTypes.node,
+};
 
 export default Signin;
