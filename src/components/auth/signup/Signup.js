@@ -15,8 +15,8 @@ const schema = yup.object({
   password: yup
     .string()
     .required('Password is required')
-    .min(8, 'Password must be at least five characters')
-    .max(16, 'Password must not exceed 16 characters'),
+    .min(8, 'Password must be at least 8 characters')
+    .max(32, 'Password must not exceed 32 characters'),
   confirmPassword: yup
     .string()
     .required('Confirm password is required')
