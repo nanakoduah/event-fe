@@ -2,14 +2,13 @@ import { Box, Grid, Typography, Paper, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
 import CheckIcon from '@mui/icons-material/Check';
+import { TypographyComponent } from '../../../common';
 
 function EventItem({ events, title }) {
   return (
     <>
       <Grid item xs={12} mx="1rem">
-        <Typography component="h5" variant="h4">
-          {title}
-        </Typography>
+        <TypographyComponent type="header">{title}</TypographyComponent>
       </Grid>
       {events && events.length > 0 ? (
         events.map((event) => (
@@ -39,9 +38,9 @@ function EventItem({ events, title }) {
                   wordBreak: 'break-all',
                 }}
               >
-                <Typography sx={{ color: 'primary.main' }}>
+                <TypographyComponent sx={{ color: 'primary.main' }}>
                   {event.date}
-                </Typography>
+                </TypographyComponent>
               </Box>
               <Box
                 sx={{
@@ -51,38 +50,37 @@ function EventItem({ events, title }) {
                   paddingInline: '1rem',
                 }}
               >
-                <Typography
-                  component="h5"
-                  variant="h5"
+                <TypographyComponent
+                  type="title"
                   sx={{ color: 'primary.main', my: '1rem' }}
                 >
                   {event.title}
-                </Typography>
-                <Typography
+                </TypographyComponent>
+                <TypographyComponent
                   sx={{ marginBlockStart: '0.5rem', color: 'grey.500' }}
                 >
                   {event.description}
-                </Typography>
+                </TypographyComponent>
                 {event.address && (
                   <Box display="flex" mt="1rem">
                     <AddLocationIcon
                       sx={{ color: 'grey.400', mt: '0.5rem', mr: '0.4rem' }}
                     />
-                    <Typography
+                    <TypographyComponent
                       sx={{ marginBlockStart: '0.3rem', color: 'primary.300' }}
                     >
                       {event.address}
-                    </Typography>
+                    </TypographyComponent>
                   </Box>
                 )}
                 {event.isVirtual && (
                   <Box display="flex">
-                    <Typography
+                    <TypographyComponent
                       sx={{ marginBlockStart: '0.5rem', color: 'primary.300' }}
                     >
                       Virtual:
                       <CheckIcon sx={{ color: 'success.main' }} />
-                    </Typography>
+                    </TypographyComponent>
                   </Box>
                 )}
 
@@ -94,7 +92,7 @@ function EventItem({ events, title }) {
                     my: '0.8rem',
                   }}
                 >
-                  <Typography
+                  <TypographyComponent
                     sx={{
                       marginBlockStart: '0.5rem',
                       color: 'primary.300',
@@ -102,7 +100,7 @@ function EventItem({ events, title }) {
                     }}
                   >
                     {event?.category ? event.category?.name : ''}
-                  </Typography>
+                  </TypographyComponent>
                 </Box>
                 <Box
                   sx={{
@@ -124,7 +122,9 @@ function EventItem({ events, title }) {
         ))
       ) : (
         <Box mx="2rem" mb="2rem">
-          <Typography color="red">This list is empty</Typography>
+          <TypographyComponent color="red">
+            This list is empty
+          </TypographyComponent>
         </Box>
       )}
     </>

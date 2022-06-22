@@ -1,11 +1,4 @@
-import {
-  Box,
-  Paper,
-  Typography,
-  Button,
-  TextField,
-  Checkbox,
-} from '@mui/material';
+import { Box, Paper, Button, TextField, Checkbox } from '@mui/material';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,7 +6,7 @@ import * as yup from 'yup';
 
 import { CategoriesAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
-import { Select } from '../../common';
+import { Select, TypographyComponent } from '../../common';
 import useNotification from '../../../hooks/useNotification';
 
 const schema = yup.object({
@@ -73,9 +66,9 @@ function EventContainer({ onSubmitRequest, disabled }) {
 
   return (
     <Paper sx={{ border: 1, borderColor: 'grey.300', padding: '2rem' }}>
-      <Typography variant="h4" component="h3" sx={{ p: '1rem' }}>
+      <TypographyComponent type="header" sx={{ p: '1rem' }}>
         Create event
-      </Typography>
+      </TypographyComponent>
       <Box
         sx={{
           marginTop: 4,

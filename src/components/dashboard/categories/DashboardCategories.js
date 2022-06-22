@@ -6,6 +6,7 @@ import { CategoriesAPI, UserAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
 import useNotification from '../../../hooks/useNotification';
 import { setUserSubscriptions } from '../../../state/slices/authSlice';
+import { TypographyComponent } from '../../common';
 
 function DashboardCategories() {
   const [selectionMap, setSelectionMap] = useState({});
@@ -100,12 +101,12 @@ function DashboardCategories() {
 
   return (
     <Paper sx={{ border: 1, borderColor: 'grey.300', padding: '0.3rem' }}>
-      <Typography variant="h4" component="h3" sx={{ p: '1rem' }}>
+      <TypographyComponent type="header" sx={{ p: '1rem' }}>
         Categories
-      </Typography>
-      <Typography sx={{ color: 'grey.400', px: '1rem', mb: '1rem' }}>
+      </TypographyComponent>
+      <TypographyComponent sx={{ color: 'grey.400', px: '1rem', mb: '1rem' }}>
         Select categories of interest and save for faster loads
-      </Typography>
+      </TypographyComponent>
       <div>
         {categoryResponse &&
           categoryResponse.categories.map((category) => (

@@ -1,4 +1,5 @@
-import { Grid, Box, Container, Typography } from '@mui/material';
+import { Grid, Box, Container } from '@mui/material';
+import { TypographyComponent } from '../common';
 
 function AuthPageWrapper({ title, genericMessage, children }) {
   return (
@@ -62,16 +63,15 @@ function AuthPageWrapper({ title, genericMessage, children }) {
             }}
           >
             <Box width="100%">{genericMessage}</Box>
-            <Typography
-              component="h2"
-              variant="h5"
+            <TypographyComponent
+              type="header"
               sx={{
                 colo: 'grey.700',
                 width: '100%',
               }}
             >
               {title}
-            </Typography>
+            </TypographyComponent>
             {children}
           </Box>
         </Grid>
