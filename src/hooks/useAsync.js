@@ -61,7 +61,7 @@ function useAsync(asyncFunction) {
           payload: response,
         });
       } catch (error) {
-        if (error.response && error.response.status === 401) {
+        if (error.response && error?.response?.status === 401) {
           reduxDispatcher(signout());
           reduxDispatcher(
             setNotification({
@@ -73,7 +73,8 @@ function useAsync(asyncFunction) {
           dispatch({
             type: 'error',
             payload:
-              error.response.data.message ||
+              error?.response?.data?.message ||
+              error?.message ||
               'Something went wrong contacting the server',
           });
         }
@@ -84,7 +85,7 @@ function useAsync(asyncFunction) {
 
   useEffect(() => {
     return () => {
-      if (apiSignalRef.current) {
+      if (apiSignalRef?.current) {
         apiSignalRef.current.abort;
       }
     };

@@ -54,7 +54,7 @@ function DashboardCategories() {
     }, {});
 
     setSelectionMap(newMap);
-  }, [user, user.subscriptions]);
+  }, [user.subscriptions]);
 
   useEffect(() => {
     if (!updateError && updateResponse) {
@@ -82,6 +82,18 @@ function DashboardCategories() {
       });
     }
   }, [updateError]);
+
+  useEffect(() => {
+    console.log({ categoryError });
+    if (categoryError) {
+      showNotification({
+        severity: 'error',
+        message:
+          categoryError ||
+          'Something went wrong saving your subscriptions. Please try again later',
+      });
+    }
+  }, [categoryError]);
 
   if (categoryStatus === 'pending' || categoryError) {
     return null;
