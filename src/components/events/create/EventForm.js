@@ -27,7 +27,7 @@ const schema = yup.object({
   isVirtual: yup.boolean(),
   address: yup.string().when('isVirtual', {
     is: false,
-    then: yup.string().required('Provide address or tick virtual conference'),
+    then: yup.string().required('Provide address or set as virtual conference'),
   }),
 });
 
@@ -40,9 +40,11 @@ function EventContainer({ onSubmitRequest, disabled }) {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const [addressValue, isVirtualValue] = watch(['address', 'isVirtual']);
 
   useEffect(() => {
     apiCall();
@@ -155,9 +157,9 @@ function EventContainer({ onSubmitRequest, disabled }) {
             label="Address"
             id="address"
             error={!!errors.address}
-            disabled={disabled}
+            disabled={disabled || !!isVirtualValue}
             helperText={
-              errors.date?.message && <span>{errors.address?.message}</span>
+              errors.address?.message && <span>{errors.address?.message}</span>
             }
             {...register('address')}
           />
@@ -165,7 +167,7 @@ function EventContainer({ onSubmitRequest, disabled }) {
             <Checkbox
               label="Virtual conference"
               id="is-virtual"
-              disabled={disabled}
+              disabled={disabled || !!addressValue}
               {...register('isVirtual')}
             />
             Virtual conference
