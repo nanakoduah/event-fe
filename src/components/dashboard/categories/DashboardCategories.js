@@ -84,7 +84,6 @@ function DashboardCategories() {
   }, [updateError]);
 
   useEffect(() => {
-    console.log({ categoryError });
     if (categoryError) {
       showNotification({
         severity: 'error',
