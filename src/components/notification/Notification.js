@@ -1,4 +1,4 @@
-import { Alert, Box, Grid, IconButton } from '@mui/material';
+import { Alert, Grid, IconButton } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { unSetNotification } from '../../state/slices/notificationSlice';
 import CloseIcon from '@mui/icons-material/Close';
@@ -13,7 +13,7 @@ const SEVERITY_COLOR_MAP = {
 };
 
 function Notification() {
-  const notifications = useSelector((state) => state.notifications);
+  const { notifications } = useSelector((state) => state.notifications);
   const dispatch = useDispatch();
 
   const handleNotificationTimeOut = (notification) => {

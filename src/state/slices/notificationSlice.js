@@ -1,18 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { uniqueId } from 'lodash';
 
-const initialState = [];
+const initialState = {
+  notifications: [],
+};
 
 export const notificationSlice = createSlice({
   name: 'notifications',
   initialState,
   reducers: {
     setNotification: (state, action) => {
-      state.push({ ...action.payload, id: uniqueId() });
+      state.notifications.push({ ...action.payload, id: uniqueId() });
       return state;
     },
     unSetNotification: (state, action) => {
-      state = state.filter((stateItem) => stateItem.id !== action.payload.id);
+      state.notifications = state.notifications.filter(
+        (stateItem) => stateItem.id !== action.payload.id
+      );
       return state;
     },
   },

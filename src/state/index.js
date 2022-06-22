@@ -1,10 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slices/authSlice';
-import notificationReducer from './slices/notificationSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import rootReducer from './slices';
+import thunk from 'redux-thunk';
 
-export default configureStore({
-  reducer: {
-    auth: authReducer,
-    notifications: notificationReducer,
-  },
-});
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default () => {
+  let store = configureStore({
+    reducer: persistedReducer,
+    middleware: [thunk],
+  });
+  let persistor = persistStore(store);
+  return { store, persistor };
+};
