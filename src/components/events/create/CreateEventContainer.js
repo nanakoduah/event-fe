@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { useEffect } from 'react';
+
 import { EventsAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
 import useNotification from '../../../hooks/useNotification';

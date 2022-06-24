@@ -8,6 +8,7 @@ import Dashboard from './components/dashboard';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import CreateEvent from './components/events/create';
+import CreateCategory from './components/categories/create';
 import AuthGuard from './components/auth/AuthGuard';
 import Notification from './components/notification';
 
@@ -22,6 +23,7 @@ function App() {
           <Router>
             <AuthGuard>
               <Routes>
+                <Route path="/categories/new" element={<CreateCategory />} />
                 <Route path="/events/new" element={<CreateEvent />} />
                 <Route
                   path="/events/:id/edit"

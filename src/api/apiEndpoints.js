@@ -25,6 +25,13 @@ export const CategoryEndpoints = (client) => ({
 
     return response;
   },
+  createCategory: async ({ signal }, params = {}) => {
+    const response = await client.post('/api/v1/categories', params, {
+      signal,
+    });
+
+    return response;
+  },
 });
 
 export const AuthEndpoints = (client) => ({
