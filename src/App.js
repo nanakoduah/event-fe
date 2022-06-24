@@ -11,6 +11,7 @@ import CreateEvent from './components/events/create';
 import CreateCategory from './components/categories/create';
 import AuthGuard from './components/auth/AuthGuard';
 import Notification from './components/notification';
+import routes from './routes';
 
 const { store, persistor } = configureStore();
 
@@ -35,8 +36,8 @@ function App() {
                 />
                 <Route path="/me" element={<div>Me components here</div>} />
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path={routes.signin} element={<Signin />} />
+                <Route path={routes.signup} element={<Signup />} />
               </Routes>
             </AuthGuard>
           </Router>

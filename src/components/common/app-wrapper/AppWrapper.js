@@ -1,6 +1,7 @@
 import { Grid, AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import routes from '../../../routes';
 import { signout } from '../../../state/slices/authSlice';
 
 function AppWrapper({ children }) {
@@ -24,14 +25,14 @@ function AppWrapper({ children }) {
                 Home
               </Typography>
             </Link>
-            <Link to={userLoggedIn ? '/categories/new' : '/signin'}>
+            <Link to={userLoggedIn ? routes.createCategory : routes.signin}>
               <Box sx={{ cursor: 'pointer' }} mx={{ xs: '0.5rem', md: '2rem' }}>
                 <Typography variant="h6" component="h6">
                   Create category
                 </Typography>
               </Box>
             </Link>
-            <Link to={userLoggedIn ? '/events/new' : '/signin'}>
+            <Link to={userLoggedIn ? routes.createEvent : routes.signin}>
               <Box sx={{ cursor: 'pointer' }} mx={{ xs: '0.5rem', md: '2rem' }}>
                 <Typography variant="h6" component="h6">
                   Create event
@@ -57,11 +58,11 @@ function AppWrapper({ children }) {
             )}
             {!userLoggedIn && (
               <>
-                <Link to="/signup">
+                <Link to={routes.signup}>
                   <Button color="inherit">Signup</Button>
                 </Link>
 
-                <Link to="/signin">
+                <Link to={routes.signin}>
                   <Button color="inherit">Signin</Button>
                 </Link>
               </>

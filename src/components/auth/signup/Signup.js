@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Box, TextField, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AuthPageWrapper from '../AuthPageWrapper';
+import routes from '../../../routes';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -147,7 +148,7 @@ function Signup({ onSignUpRequest, disabled, genericMessage }) {
             <Box component="span" color="#bbb" mr="0.8rem">
               Already have an account?
             </Box>
-            <Box component={Link} to="/signin" fontWeight="600">
+            <Box component={Link} to={routes.signin} fontWeight="600">
               Login here
             </Box>
           </span>
