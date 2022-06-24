@@ -3,9 +3,14 @@ const routes = {
   signin: '/signin',
   signup: '/signiup',
   createEvent: '/events/new',
-  updateEvent: '/events/new',
-  createCategory: '/categories/new',
-  updateCategory: '/categories/new',
+  viewEvent: '/events/:id/view',
+  updateEvent: '/events/:id/edit',
+  categories: '/admin/categories',
+  createCategory: '/admin/categories/new',
+  updateCategory: '/admin/categories/new',
+  users: '/admin/users',
+  createUser: '/admin/users/new',
+  updateUser: '/admin/users/new',
 };
 
 export default routes;

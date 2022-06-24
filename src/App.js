@@ -7,15 +7,16 @@ import configureStore from './state';
 import Dashboard from './components/dashboard';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
-import CreateEvent from './components/events/create';
-import CreateCategory from './components/categories/create';
+// import CreateEvent from './components/events/create';
+// import CreateCategory from './components/categories/create';
 import AuthGuard from './components/auth/AuthGuard';
 import Notification from './components/notification';
 import routes from './routes';
+import AppLoader from './AppLoader';
 
 const { store, persistor } = configureStore();
 
-function App() {
+function App(props) {
   return (
     <React.StrictMode>
       <Provider store={store}>
@@ -24,7 +25,7 @@ function App() {
           <Router>
             <AuthGuard>
               <Routes>
-                <Route path="/categories/new" element={<CreateCategory />} />
+                {/* <Route path="/categories/new" element={<CreateCategory />} />
                 <Route path="/events/new" element={<CreateEvent />} />
                 <Route
                   path="/events/:id/edit"
@@ -34,10 +35,18 @@ function App() {
                   path="/events/:id/view"
                   element={<div>View event here</div>}
                 />
-                <Route path="/me" element={<div>Me components here</div>} />
+                <Route path="/me" element={<div>Me components here</div>} /> */}
                 <Route path="/" element={<Dashboard />} />
                 <Route path={routes.signin} element={<Signin />} />
                 <Route path={routes.signup} element={<Signup />} />
+                <Route
+                  path="*"
+                  element={
+                    <React.Suspense>
+                      <AppLoader />
+                    </React.Suspense>
+                  }
+                />
               </Routes>
             </AuthGuard>
           </Router>
