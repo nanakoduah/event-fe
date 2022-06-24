@@ -9,9 +9,9 @@ import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import AuthGuard from './components/auth/AuthGuard';
 import Notification from './components/notification';
-import routes from './routes';
 import AppLoader from './AppLoader';
 import { AppWrapper } from './components/common';
+import { routes } from './constants';
 
 const { store, persistor } = configureStore();
 

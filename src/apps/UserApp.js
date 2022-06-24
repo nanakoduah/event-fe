@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import CreateEvent from '../components/events/create';
-import routes from '../routes';
+import { routes } from '../constants';
 
 function UserApp() {
   return (

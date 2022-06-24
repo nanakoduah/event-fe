@@ -1,3 +1,8 @@
+const USER_TYPES = {
+  USER_ADMIN: 'USER::ADMIN',
+  USER_CUSTOMER: 'USER::CUSTOMER',
+};
+
 const routes = {
   home: '/',
   signin: '/signin',
@@ -13,4 +18,4 @@ const routes = {
   updateUser: '/admin/users/new',
 };
 
-export default routes;
+export { USER_TYPES, routes };

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Box, TextField, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AuthPageWrapper from '../AuthPageWrapper';
-import routes from '../../../routes';
+import { routes } from '../../../constants';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
