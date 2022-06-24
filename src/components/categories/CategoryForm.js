@@ -8,7 +8,7 @@ import { TypographyComponent } from '../common';
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
-  description: yup.string().required('Description is required'),
+  description: yup.string(),
 });
 
 function EventForm({ onSubmitRequest, disabled, formTitle }) {
