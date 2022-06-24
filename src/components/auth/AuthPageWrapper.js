@@ -6,8 +6,6 @@ function AuthPageWrapper({ title, genericMessage, children }) {
   return (
     <Container
       sx={{
-        height: '100vh',
-        width: '100%',
         overflow: 'auto',
       }}
     >

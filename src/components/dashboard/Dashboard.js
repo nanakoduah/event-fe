@@ -6,16 +6,14 @@ import { AppWrapper } from '../common';
 
 function Dashboard() {
   return (
-    <AppWrapper>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={3}>
-          <DashboardCategories />
-        </Grid>
-        <Grid item xs={12} md={9}>
-          <EventList />
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={3}>
+        <DashboardCategories />
       </Grid>
-    </AppWrapper>
+      <Grid item xs={12} md={9}>
+        <EventList />
+      </Grid>
+    </Grid>
   );
 }
 

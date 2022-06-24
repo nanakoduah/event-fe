@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateEvent from '../components/events/create';
 import CreateCategory from '../components/categories/create';
 import routes from '../routes';
-import { AppWrapper } from '../components/common';
 
 function AdminApp() {
   return (

@@ -1,7 +1,7 @@
 const routes = {
   home: '/',
   signin: '/signin',
-  signup: '/signiup',
+  signup: '/signup',
   createEvent: '/events/new',
   viewEvent: '/events/:id/view',
   updateEvent: '/events/:id/edit',

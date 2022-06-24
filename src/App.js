@@ -7,12 +7,11 @@ import configureStore from './state';
 import Dashboard from './components/dashboard';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
-// import CreateEvent from './components/events/create';
-// import CreateCategory from './components/categories/create';
 import AuthGuard from './components/auth/AuthGuard';
 import Notification from './components/notification';
 import routes from './routes';
 import AppLoader from './AppLoader';
+import { AppWrapper } from './components/common';
 
 const { store, persistor } = configureStore();
 
@@ -24,30 +23,21 @@ function App(props) {
           <Notification />
           <Router>
             <AuthGuard>
-              <Routes>
-                {/* <Route path="/categories/new" element={<CreateCategory />} />
-                <Route path="/events/new" element={<CreateEvent />} />
-                <Route
-                  path="/events/:id/edit"
-                  element={<div>edit event here</div>}
-                />
-                <Route
-                  path="/events/:id/view"
-                  element={<div>View event here</div>}
-                />
-                <Route path="/me" element={<div>Me components here</div>} /> */}
-                <Route path="/" element={<Dashboard />} />
-                <Route path={routes.signin} element={<Signin />} />
-                <Route path={routes.signup} element={<Signup />} />
-                <Route
-                  path="*"
-                  element={
-                    <React.Suspense>
-                      <AppLoader />
-                    </React.Suspense>
-                  }
-                />
-              </Routes>
+              <AppWrapper>
+                <Routes>
+                  <Route path={routes.signin} element={<Signin />} />
+                  <Route path={routes.signup} element={<Signup />} />
+                  <Route path="/" element={<Dashboard />} />
+                  <Route
+                    path="*"
+                    element={
+                      <React.Suspense>
+                        <AppLoader />
+                      </React.Suspense>
+                    }
+                  />
+                </Routes>
+              </AppWrapper>
             </AuthGuard>
           </Router>
         </PersistGate>

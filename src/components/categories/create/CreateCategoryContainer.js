@@ -4,7 +4,6 @@ import { useCallback, useEffect } from 'react';
 import { CategoriesAPI } from '../../../api';
 import useAsync from '../../../hooks/useAsync';
 import useNotification from '../../../hooks/useNotification';
-import { AppWrapper } from '../../common';
 import CategoryForm from '../CategoryForm';
 
 function CreateCategoryContainer() {
@@ -32,17 +31,15 @@ function CreateCategoryContainer() {
   }, [createValue]);
 
   return (
-    <AppWrapper>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6} mx="auto">
-          <CategoryForm
-            onSubmitRequest={createCategory}
-            formTitle="Create category"
-            disabled={createStatus === 'pending'}
-          />
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={6} mx="auto">
+        <CategoryForm
+          onSubmitRequest={createCategory}
+          formTitle="Create category"
+          disabled={createStatus === 'pending'}
+        />
       </Grid>
-    </AppWrapper>
+    </Grid>
   );
 }
 
