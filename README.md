@@ -40,7 +40,7 @@ or
 - Category management
 - event management from system admins to block inappropriate events
 
-### Login admin login with default database
+### Login: Admin login with default database
 - email: `admin@mail.com`
 - password: `11111111`
 - 
